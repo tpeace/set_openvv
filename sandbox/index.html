@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<script src="./js/flowplayer-3.2.11.min.js"></script>
+<script src="./js/jquery-1.4.4.min.js" type="text/javascript"></script>
+<style type="text/css">
+html, body {
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
+}
+body {
+  margin:0;
+  padding:0;
+  overflow:visible;
+  background-color: #FFF;
+}
+#wrapper {
+  width: 970px;
+  margin-right: auto;
+  margin-left: auto;
+  background-repeat: no-repeat;
+  height: 1600px;
+}
+#player {
+  width:600px;
+  height:400px;
+  position: relative;
+  z-index: auto;
+}
+#visibilityInfoHolder {
+  top: 10px;
+  left: 10px;
+  position: fixed;
+}
+#visibilityIcon {
+  width:48px;
+  height:48px;
+}
+#progressBar {
+  width:48px;
+  height:20px;
+  top:60px;
+  left:10px;
+  position: fixed;
+}
+.viewable {
+  background: url('img/checkcircle.jpg') 0 0;
+}
+.unviewable {
+  background: url('img/xbox.jpg') 0 0;
+}
+</style>
+<title>Ad Viewability Demo</title>
+</head>
+
+<body>
+<div id="wrapper">
+  <h3>Quick viewability demo</h3>
+  <p>The display in the upper left indicates the percentage of the ad that is viewable onscreen.</p>
+  <p>Scroll the player off the screen to change the values.</p>
+
+
+  <div id="player">
+    <object width="100%" height="100%" id="player_api" name="player_api" data="http://releases.flowplayer.org/swf/flowplayer-3.2.15.swf" type="application/x-shockwave-flash">
+      <param name="allowfullscreen" value="true">
+      <param name="allowscriptaccess" value="always">
+      <param name="quality" value="high">
+      <param name="bgcolor" value="#000000">
+      <param name="flashvars" value="config={&quot;clip&quot;:{&quot;url&quot;:&quot;http://stream.flowplayer.org/KimAronson-TwentySeconds70930.mp4&quot;,&quot;autoPlay&quot;:true,&quot;autoBuffering&quot;:true},&quot;plugins&quot;:{&quot;controls&quot;:{&quot;autoHide&quot;:&quot;never&quot;},&quot;ova&quot;:{&quot;url&quot;:&quot;//flaggr.com/viki/ova.swf&quot;,&quot;autoPlay&quot;:true,&quot;ads&quot;:{&quot;playOnce&quot;:false,&quot;servers&quot;:[{&quot;type&quot;:&quot;direct&quot;,&quot;tag&quot;:&quot;http://flaggr.com/viki/set-ovv-vast.xml&quot;}],&quot;schedule&quot;:[{&quot;position&quot;:&quot;pre-roll&quot;}]}}},&quot;playerId&quot;:&quot;player&quot;,&quot;playlist&quot;:[{&quot;autoPlay&quot;:true,&quot;autoBuffering&quot;:true}]}"></object></div>
+</div>
+
+<div id="visibilityInfoHolder">
+  <div id="visibilityIcon" />
+  <progress id="progressBar" value="0" max="100"></progress>
+</div>
+
+</body></html>

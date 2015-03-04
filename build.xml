@@ -9,11 +9,12 @@
 	<property name="src.dir" value="src" />
 	<property name="bin.dir" value="bin" />
 	<property name="asdoc.dir" value="asdoc" />
-	
+	<property name="test.dir" value="sandbox" />
+
 	<taskdef resource="flexTasks.tasks" classpath="${FLEX_HOME}/ant/lib/flexTasks.jar"/>
 
-	<target name="compile-all" depends="clean, compile-beacon, compile-lib"/>
-		
+	<target name="compile-all" depends="clean, compile-beacon, compile-lib, compile-vpaid-client"/>
+
 	<target name="sign-version">
 		<sequential>
 			<echo>Signing build with version: ${build.version}</echo>
@@ -23,14 +24,25 @@
 		</sequential>
 	</target>
 
-	<target name="compile-beacon" depends="check-env, sign-version">
-	
-		<mxmlc file="${src.dir}/org/openvv/OVVBeacon.as"
-			   output="${bin.dir}/OVVBeacon.swf"
-			   static-rsls="true">
-			<source-path path-element="${src.dir}"/>
-		</mxmlc>
-	</target>
+<target name="compile-vpaid-client" depends="check-env">
+
+	<mxmlc file="${src.dir}/com/set/VPAIDClient.as"
+			output="${bin.dir}/SetVPAIDClient.swf"
+			static-rsls="true">
+		<source-path path-element="${src.dir}"/>
+	</mxmlc>
+	<copy file="${bin.dir}/SetVPAIDClient.swf" todir="${test.dir}/" />
+</target>
+
+<target name="compile-beacon" depends="check-env, sign-version">
+
+	<mxmlc file="${src.dir}/org/openvv/OVVBeacon.as"
+			output="${bin.dir}/SetBeacon.swf"
+			static-rsls="true">
+		<source-path path-element="${src.dir}"/>
+	</mxmlc>
+	<copy file="${bin.dir}/SetBeacon.swf" todir="${test.dir}/" />
+</target>
 
 	<target name="compile-lib" depends="check-env, sign-version">
 		<compc output="${bin.dir}/openvv.swc"
@@ -40,7 +52,7 @@
 	</target>
 
 	<target name="compile-doc" depends="check-env, sign-version">
-		<asdoc output="${asdoc.dir}" lenient="true" failonerror="true"> 
+		<asdoc output="${asdoc.dir}" lenient="true" failonerror="true">
 			<doc-sources path-element="${src.dir}" />
 		</asdoc>
 	</target>
